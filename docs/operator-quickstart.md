@@ -28,10 +28,18 @@ west workspace の中なら `west update --fetch smart org-ilo-isco`
 git ls-files | wc -l                    # → 18（うち 15 が継承した中身、3 が本 docs）
 git log --oneline | wc -l               # → 2
 git ls-files | grep -v '^docs/' | grep -v '^README.md$' | wc -l   # → 15（継承分だけ）
-ls src test data 2>&1 | tail -1
+for d in src test data; do printf '%-6s ' "$d"; [ -d "$d" ] && echo present || echo ABSENT; done
 ```
 
-`src` / `test` / `data` は**どれも無い**（`ls` が `No such file or directory`）。
+```
+src    ABSENT
+test   ABSENT
+data   ABSENT
+```
+
+`src` / `test` / `data` は**どれも無い**。（`ls src test data 2>&1 | tail -1` のような
+書き方をしないこと —— stdout と stderr が混ざる順序は決まっておらず、最後の 1 行が
+どれになるかは実行ごとに変わりうる。）
 TypeScript は `kotoba/src/` に在り、`src/` ではない —— この差は成熟度計測が
 `src/**` を見ることと関係する（superproject ADR-2608052000）。
 
@@ -42,16 +50,19 @@ TypeScript は `kotoba/src/` に在り、`src/` ではない —— この差は
 ## 3. `kotoba/` が install できないことを確かめる
 
 ```bash
-cd kotoba && npm install --no-audit --no-fund ; echo "exit=$?"
+(cd kotoba && npm install --no-audit --no-fund) ; echo "exit=$?"
 ```
 
-こう落ちる（**これが期待される結果**）:
+**`cd` を括弧で囲むのは、step 4 以降が repo ルートからのパスで書いてあるため**
+（囲まずに `cd kotoba` すると以降の `kotoba/src/*.ts` が見つからない）。
+
+`exit=1` で落ち、出力にこの 3 行が含まれる（**これが期待される結果**。実際の出力は
+`npm error` が入れ子で前置される長いものなので、ここに載せるのは抜粋）:
 
 ```
 npm error code EALLOWSCRIPTS
 npm error --allow-scripts is not allowed in project-scoped installs.
 npm error git dep preparation failed
-exit=1
 ```
 
 理由: 依存 `@etzhayyim/sdk` が git 依存で、その `package.json` が `prepare: tsc` を
