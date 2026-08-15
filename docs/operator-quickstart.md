@@ -90,10 +90,16 @@ kotoba/src/query.ts:6: * (kysely.selectFrom('vertex_open_isco_occupation').where
 実際の import を並べると、外部依存は `@etzhayyim/sdk` だけだと分かる:
 
 ```bash
-grep -hn "^import" kotoba/src/*.ts | sort -u
+grep -h "^import" kotoba/src/*.ts | sort -u
 ```
 
-→ `@etzhayyim/sdk` / `node:fs/promises` / `./types.js` のみ。
+```
+import type { Occupation } from "./types.js";
+import { Etzhayyim } from "@etzhayyim/sdk";
+import { readFile } from "node:fs/promises";
+```
+
+**3 行で全部**。外部依存は `@etzhayyim/sdk` だけである。
 
 **つまり検査はコードではなく散文に反応している。** 「置き換えた前の書き方」を説明する
 コメントを消せば TODO は閉じるが、それは検査を黙らせるだけで何も直さない。判断は
