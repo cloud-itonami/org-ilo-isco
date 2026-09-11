@@ -122,7 +122,7 @@ import { readFile } from "node:fs/promises";
 うち軍隊は `01` / `02` / `03` の 3 群である:
 
 ```bash
-nbb -e '(ns p (:require ["fs" :as fs]))
+kbb --backend sci -e '(ns p (:require ["fs" :as fs]))
 (let [g (aget (js/JSON.parse (fs/readFileSync "PROJECT.jsonld" "utf8")) "etzhayyim:subMajorGroups")
       codes (set (map #(aget % "code") g))]
   (println "listed:" (count g))
@@ -145,7 +145,7 @@ listed: 41
 なら `orgs/cloud-itonami/isco`）:
 
 ```bash
-nbb -e '(ns p (:require [clojure.edn :as edn] ["fs" :as fs]))
+kbb --backend sci -e '(ns p (:require [clojure.edn :as edn] ["fs" :as fs]))
 (let [seed (:seed (edn/read-string (fs/readFileSync "../isco/data/isco-occupations.edn" "utf8")))
       codes (map :isco.occupation/code seed)]
   (println "total:" (count seed))
