@@ -20,7 +20,7 @@ that were not previously flagged.
 実際の import は `@etzhayyim/sdk` / `node:fs/promises` / `./types.js` のみ。
 **検査はコードではなく散文に反応している。**
 
-## Required remediation (per CLAUDE.md substrate boundary):
+## Required remediation (per AGENTS.md substrate boundary):
 
 **以下 4 項目は、この repo に対しては該当箇所が存在しない**（2026-08-15 実測。
 `kotoba/src/*.ts` の全 import を確認済み）。**コードを書き換えて閉じてはならない** ——
@@ -42,5 +42,5 @@ docstring を消せば検査は黙るが、直る物は何も無く、この形�
 ## Reference
 
 - ADR-2605192100 / 2605192115 / 2605192200
-- `/CLAUDE.md` § Substrate boundary
+- `/AGENTS.md` § Substrate boundary
 - This file added by Coverage Gap Patch task #15.

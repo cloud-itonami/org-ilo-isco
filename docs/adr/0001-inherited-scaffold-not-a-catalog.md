@@ -16,7 +16,7 @@ revision `c3a74d2`）、**切り出し以降 commit は 1 本も足されてい�
 `cloud-itonami/org-ilo-isco`」と**この repo を名指しで宣言している**。
 
 しかし **README が無かった。** 宣言に従って辿り着いた読み手が最初に見るのは、
-retired された etzhayyim appview のことを書いた `CLAUDE.md` と、動かない
+retired された etzhayyim appview のことを書いた `AGENTS.md` と、動かない
 TypeScript scaffold である。**名乗りを確かめる入口が無い**状態だった。
 
 ## 測ってわかったこと（2026-08-15、commit `e2463f7`）
@@ -70,7 +70,7 @@ TypeScript scaffold である。**名乗りを確かめる入口が無い**状�
   言っている今の状態だけは不可**。移すなら `isco` の README の宣言文が正になり、
   畳むなら宣言文を書き換える必要がある。
 - **`kotoba/`（TypeScript）を維持するのか。** workspace の規則は新規実装を
-  `.cljc` / `.kotoba` に寄せており（CLAUDE.md「ランタイム優先順位」）、TS scaffold の
+  `.cljc` / `.kotoba` に寄せており（AGENTS.md「ランタイム優先順位」）、TS scaffold の
   復活はその方向と逆を向く。install 経路が npm 側の都合で壊れていることは、
   維持コストの実測値として数えてよい。
 - **`manifest/origin-domains.edn` への登録。** この repo の記録が無く、規則により

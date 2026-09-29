@@ -28,7 +28,7 @@
 この README と `docs/` はその上に足した**文書だけ**の commit で、中身は直していない。
 
 ```
-CLAUDE.md            PROJECT.jsonld       README.edn      MIGRATION-TODO.md
+AGENTS.md            PROJECT.jsonld       README.edn      MIGRATION-TODO.md
 migration.edn        kotoba/              （TypeScript scaffold 5 ファイル）
 ```
 
@@ -67,7 +67,7 @@ migration.edn        kotoba/              （TypeScript scaffold 5 ファイル�
 ## 名前についての未検証事項
 
 `org-ilo` は「ilo.org のラベル逆順」と読めるが、**`manifest/origin-domains.edn` に
-この repo の記録が無い**。workspace の規則（CLAUDE.md「記録が無い = UNVERIFIED であって
+この repo の記録が無い**。workspace の規則（AGENTS.md「記録が無い = UNVERIFIED であって
 CONFORMANT ではない」）に従い、ここでは**名前からドメインを補完しない**。
 記録の追加は未実施（follow-up）。
 
